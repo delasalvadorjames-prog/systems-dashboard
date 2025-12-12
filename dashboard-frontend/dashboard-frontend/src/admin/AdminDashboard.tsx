@@ -92,7 +92,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ activeTab = "dashboard"
       </div>
 
       {/* Content */}
-      <div className="relative z-10 px-6 py-8 min-h-screen">
+      <div className="relative z-10 px-4 md:px-6 py-6 md:py-8 min-h-screen">
         {loading && <p className="text-center text-white text-lg font-semibold animate-pulse">Loading...</p>}
 
         {activeTab === "dashboard" && <Dashboard submissions={submissions} alerts={alerts} />}
@@ -166,18 +166,18 @@ const Dashboard: React.FC<{ submissions: TeacherSubmission[]; alerts: Alert[] }>
   const totalHours = filteredSubmissions.reduce((sum, s) => sum + (typeof s.hours_taught === 'string' ? parseFloat(s.hours_taught) : s.hours_taught || 0), 0);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Teacher Selector Header */}
-      <div className="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-white/20 hover:bg-white/20 transition-all duration-300" style={{ animation: 'slideIn 0.6s ease-out' }}>
-        <div className="flex items-center gap-4">
-          <label htmlFor="teacher-select" className="text-lg font-semibold text-white">
+      <div className="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-4 md:p-6 border border-white/20 hover:bg-white/20 transition-all duration-300" style={{ animation: 'slideIn 0.6s ease-out' }}>
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4">
+          <label htmlFor="teacher-select" className="text-base md:text-lg font-semibold text-white">
             🎯 Filter by Teacher:
           </label>
           <select
             id="teacher-select"
             value={selectedTeacher}
             onChange={(e) => setSelectedTeacher(e.target.value)}
-            className="px-4 py-2 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/20 text-white backdrop-blur-sm cursor-pointer hover:bg-white/30 transition-all"
+            className="w-full md:w-auto px-4 py-2 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/20 text-white backdrop-blur-sm cursor-pointer hover:bg-white/30 transition-all text-sm md:text-base"
           >
             <option value="">📊 All Teachers</option>
             {uniqueTeachers.map((teacher) => (
@@ -189,7 +189,7 @@ const Dashboard: React.FC<{ submissions: TeacherSubmission[]; alerts: Alert[] }>
           {selectedTeacher && (
             <button
               onClick={() => setSelectedTeacher("")}
-              className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-medium transition"
+              className="w-full md:w-auto px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-medium transition text-sm md:text-base"
             >
               ✕ Reset
             </button>
@@ -198,34 +198,34 @@ const Dashboard: React.FC<{ submissions: TeacherSubmission[]; alerts: Alert[] }>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-blue-500/30 to-blue-600/20 backdrop-blur-sm p-6 rounded-lg shadow-lg border border-blue-400/50 hover:from-blue-500/40 hover:to-blue-600/30 transition-all duration-300 transform hover:scale-105" style={{ animation: 'slideIn 0.6s ease-out 0.1s backwards' }}>
-          <p className="text-sm text-white/80">📊 Total Submissions</p>
-          <p className="text-3xl font-bold text-white">{submissions.length}</p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+        <div className="bg-gradient-to-br from-blue-500/30 to-blue-600/20 backdrop-blur-sm p-3 md:p-6 rounded-lg shadow-lg border border-blue-400/50 hover:from-blue-500/40 hover:to-blue-600/30 transition-all duration-300 transform hover:scale-105" style={{ animation: 'slideIn 0.6s ease-out 0.1s backwards' }}>
+          <p className="text-xs md:text-sm text-white/80">📊 Total Submissions</p>
+          <p className="text-2xl md:text-3xl font-bold text-white">{submissions.length}</p>
         </div>
-        <div className="bg-gradient-to-br from-yellow-500/30 to-yellow-600/20 backdrop-blur-sm p-6 rounded-lg shadow-lg border border-yellow-400/50 hover:from-yellow-500/40 hover:to-yellow-600/30 transition-all duration-300 transform hover:scale-105" style={{ animation: 'slideIn 0.6s ease-out 0.2s backwards' }}>
-          <p className="text-sm text-white/80">⏳ Pending Verification</p>
-          <p className="text-3xl font-bold text-white">{pendingCount}</p>
+        <div className="bg-gradient-to-br from-yellow-500/30 to-yellow-600/20 backdrop-blur-sm p-3 md:p-6 rounded-lg shadow-lg border border-yellow-400/50 hover:from-yellow-500/40 hover:to-yellow-600/30 transition-all duration-300 transform hover:scale-105" style={{ animation: 'slideIn 0.6s ease-out 0.2s backwards' }}>
+          <p className="text-xs md:text-sm text-white/80">⏳ Pending Verification</p>
+          <p className="text-2xl md:text-3xl font-bold text-white">{pendingCount}</p>
         </div>
-        <div className="bg-gradient-to-br from-green-500/30 to-green-600/20 backdrop-blur-sm p-6 rounded-lg shadow-lg border border-green-400/50 hover:from-green-500/40 hover:to-green-600/30 transition-all duration-300 transform hover:scale-105" style={{ animation: 'slideIn 0.6s ease-out 0.3s backwards' }}>
-          <p className="text-sm text-white/80">✓ Verified Submissions</p>
-          <p className="text-3xl font-bold text-white">{verifiedCount}</p>
+        <div className="bg-gradient-to-br from-green-500/30 to-green-600/20 backdrop-blur-sm p-3 md:p-6 rounded-lg shadow-lg border border-green-400/50 hover:from-green-500/40 hover:to-green-600/30 transition-all duration-300 transform hover:scale-105" style={{ animation: 'slideIn 0.6s ease-out 0.3s backwards' }}>
+          <p className="text-xs md:text-sm text-white/80">✓ Verified Submissions</p>
+          <p className="text-2xl md:text-3xl font-bold text-white">{verifiedCount}</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-500/30 to-purple-600/20 backdrop-blur-sm p-6 rounded-lg shadow-lg border border-purple-400/50 hover:from-purple-500/40 hover:to-purple-600/30 transition-all duration-300 transform hover:scale-105" style={{ animation: 'slideIn 0.6s ease-out 0.4s backwards' }}>
-          <p className="text-sm text-white/80">⏱️ Total Hours</p>
-          <p className="text-3xl font-bold text-white">{totalHours.toFixed(1)}h</p>
+        <div className="bg-gradient-to-br from-purple-500/30 to-purple-600/20 backdrop-blur-sm p-3 md:p-6 rounded-lg shadow-lg border border-purple-400/50 hover:from-purple-500/40 hover:to-purple-600/30 transition-all duration-300 transform hover:scale-105" style={{ animation: 'slideIn 0.6s ease-out 0.4s backwards' }}>
+          <p className="text-xs md:text-sm text-white/80">⏱️ Total Hours</p>
+          <p className="text-2xl md:text-3xl font-bold text-white">{totalHours.toFixed(1)}h</p>
         </div>
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Bar Chart - Monthly Completed Work (Hours) */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-white/20 hover:bg-white/20 transition-all duration-300" style={{ animation: 'slideIn 0.6s ease-out 0.5s backwards' }}>
-          <h2 className="text-xl font-bold mb-4 text-white">📈 Hours Worked by Date & Month</h2>
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-4 md:p-6 border border-white/20 hover:bg-white/20 transition-all duration-300" style={{ animation: 'slideIn 0.6s ease-out 0.5s backwards' }}>
+          <h2 className="text-lg md:text-xl font-bold mb-4 text-white">📈 Hours Worked by Date & Month</h2>
           {chartData.length === 0 ? (
             <p className="text-white/60">No data available</p>
           ) : (
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={250}>
               <BarChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.2)" />
                 <XAxis dataKey="date" angle={-45} textAnchor="end" height={80} stroke="rgba(255,255,255,0.5)" />
@@ -238,8 +238,8 @@ const Dashboard: React.FC<{ submissions: TeacherSubmission[]; alerts: Alert[] }>
         </div>
 
         {/* Pie Chart - Hours Worked by Teacher */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-white/20 hover:bg-white/20 transition-all duration-300" style={{ animation: 'slideIn 0.6s ease-out 0.6s backwards' }}>
-          <h2 className="text-xl font-bold mb-4 text-white">🎓 Teaching Hours by Teacher (Top 5)</h2>
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-4 md:p-6 border border-white/20 hover:bg-white/20 transition-all duration-300" style={{ animation: 'slideIn 0.6s ease-out 0.6s backwards' }}>
+          <h2 className="text-lg md:text-xl font-bold mb-4 text-white">🎓 Teaching Hours by Teacher (Top 5)</h2>
           {hoursChartData.length === 0 ? (
             <p className="text-white/60">No data available</p>
           ) : (
@@ -272,19 +272,19 @@ const Dashboard: React.FC<{ submissions: TeacherSubmission[]; alerts: Alert[] }>
       </div>
 
       {/* Alerts Section */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-xl font-bold mb-4">Recent Alerts</h2>
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+        <h2 className="text-lg md:text-xl font-bold mb-4">Recent Alerts</h2>
         {alerts.length === 0 ? (
-          <p className="text-gray-600">No alerts</p>
+          <p className="text-gray-600 text-sm md:text-base">No alerts</p>
         ) : (
           <div className="space-y-2">
             {alerts.map((alert) => (
               <div
                 key={alert.id}
-                className={`p-4 border-l-4 rounded ${alert.type === "Alert" ? "border-red-500 bg-red-50" : alert.type === "Warning" ? "border-yellow-500 bg-yellow-50" : "border-blue-500 bg-blue-50"}`}
+                className={`p-3 md:p-4 border-l-4 rounded text-sm md:text-base ${alert.type === "Alert" ? "border-red-500 bg-red-50" : alert.type === "Warning" ? "border-yellow-500 bg-yellow-50" : "border-blue-500 bg-blue-50"}`}
               >
                 <p className="font-semibold">{alert.type}</p>
-                <p className="text-sm text-gray-700">{alert.message}</p>
+                <p className="text-xs md:text-sm text-gray-700">{alert.message}</p>
               </div>
             ))}
           </div>
@@ -292,10 +292,10 @@ const Dashboard: React.FC<{ submissions: TeacherSubmission[]; alerts: Alert[] }>
       </div>
 
       {/* Quick Links */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-xl font-bold mb-4">Quick Links</h2>
-        <div className="grid grid-cols-1 gap-4">
-          <button className="p-4 bg-blue-100 hover:bg-blue-200 rounded text-left">
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+        <h2 className="text-lg md:text-xl font-bold mb-4">Quick Links</h2>
+        <div className="grid grid-cols-1 gap-3 md:gap-4">
+          <button className="p-3 md:p-4 bg-blue-100 hover:bg-blue-200 rounded text-left text-sm md:text-base font-semibold">
             📋 View All Submissions
           </button>
           <button className="p-4 bg-green-100 hover:bg-green-200 rounded text-left">
@@ -374,50 +374,50 @@ const VerifyAttendance: React.FC<{ submissions: TeacherSubmission[]; onRefresh: 
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-2xl font-bold mb-4">Verify Attendance Submissions</h2>
+    <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+      <h2 className="text-xl md:text-2xl font-bold mb-4">Verify Attendance Submissions</h2>
 
       {localSubmissions.length === 0 ? (
-        <p className="text-center text-gray-600">No submissions to verify</p>
+        <p className="text-center text-gray-600 text-sm md:text-base">No submissions to verify</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-xs md:text-sm">
             <thead className="bg-gray-100">
               <tr>
-                <th className="px-4 py-2 text-left">Teacher Name</th>
-                <th className="px-4 py-2 text-left">Class</th>
-                <th className="px-4 py-2 text-left">Hours</th>
-                <th className="px-4 py-2 text-left">Date</th>
-                <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">Actions</th>
+                <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm">Teacher Name</th>
+                <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm">Class</th>
+                <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm">Hours</th>
+                <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm">Date</th>
+                <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm">Status</th>
+                <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm">Actions</th>
               </tr>
             </thead>
             <tbody>
               {localSubmissions.map((submission) => (
                 <tr key={submission.id} className="border-t hover:bg-gray-50">
-                  <td className="px-4 py-2">{submission.teacher_name}</td>
-                  <td className="px-4 py-2">{submission.class_section}</td>
-                  <td className="px-4 py-2">{submission.hours_taught} hrs</td>
-                  <td className="px-4 py-2">{submission.date}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-3 md:px-6 py-2 md:py-3 text-xs md:text-sm">{submission.teacher_name}</td>
+                  <td className="px-3 md:px-6 py-2 md:py-3 text-xs md:text-sm">{submission.class_section}</td>
+                  <td className="px-3 md:px-6 py-2 md:py-3 text-xs md:text-sm">{submission.hours_taught} hrs</td>
+                  <td className="px-3 md:px-6 py-2 md:py-3 text-xs md:text-sm">{submission.date}</td>
+                  <td className="px-3 md:px-6 py-2 md:py-3 text-xs md:text-sm">
                     <span
                       className={`px-2 py-1 rounded text-xs font-semibold ${submission.status === "Verified" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}`}
                     >
                       {submission.status}
                     </span>
                   </td>
-                  <td className="px-4 py-2">
-                    <div className="flex gap-2">
+                  <td className="px-3 md:px-6 py-2 md:py-3 text-xs md:text-sm">
+                    <div className="flex gap-1 md:gap-2">
                       <button
                         onClick={() => handleApprove(submission.id)}
                         disabled={submission.status === "Verified" || approving === submission.id}
-                        className="px-3 py-1 bg-green-500 text-white rounded text-xs hover:bg-green-600 disabled:bg-gray-400 whitespace-nowrap"
+                        className="px-2 md:px-3 py-1 md:py-2 bg-green-500 text-white rounded text-xs hover:bg-green-600 disabled:bg-gray-400 whitespace-nowrap"
                       >
                         {approving === submission.id ? "..." : "Approve"}
                       </button>
                       <button
                         onClick={() => handleAdjust(submission.id)}
-                        className="px-3 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 whitespace-nowrap"
+                        className="px-2 md:px-3 py-1 md:py-2 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 whitespace-nowrap"
                       >
                         Adjust
                       </button>
@@ -495,20 +495,20 @@ const ComputeSalary: React.FC = () => {
   };
 
   return (
-    <div className="bg-white/30 text-center rounded-lg shadow-md p-6 min-h-screen flex flex-col">
-      <h2 className="text-2xl text-white font-bold mb-4">Compute Salary</h2>
+    <div className="bg-white/30 text-center rounded-lg shadow-md p-4 md:p-6 min-h-screen flex flex-col">
+      <h2 className="text-xl md:text-2xl text-white font-bold mb-4">Compute Salary</h2>
 
       {loading ? (
-        <p className="text-center text-gray-600">Loading teachers...</p>
+        <p className="text-center text-gray-600 text-sm md:text-base">Loading teachers...</p>
       ) : (
         <div className="flex justify-center flex-1">
-          <div className="space-y-4 max-w-md w-full flex flex-col justify-center">
+          <div className="space-y-4 md:space-y-6 max-w-md w-full flex flex-col justify-center">
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Teacher</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Teacher</label>
             <select
               value={selectedTeacher}
               onChange={(e) => setSelectedTeacher(e.target.value)}
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Teacher</option>
               {teachers.map((teacher) => (
@@ -520,69 +520,69 @@ const ComputeSalary: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Period Start</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Period Start</label>
             <input
               type="date"
               value={salaryData.period_start}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, period_start: e.target.value })
               }
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Period End</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Period End</label>
             <input
               type="date"
               value={salaryData.period_end}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, period_end: e.target.value })
               }
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Hourly Rate</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Hourly Rate</label>
             <input
               type="number"
               value={salaryData.hourly_rate}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, hourly_rate: parseFloat(e.target.value) })
               }
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Allowances</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Allowances</label>
             <input
               type="number"
               value={salaryData.allowances}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, allowances: parseFloat(e.target.value) })
               }
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Deductions</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Deductions</label>
             <input
               type="number"
               value={salaryData.deductions}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, deductions: parseFloat(e.target.value) })
               }
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <button
             onClick={handleComputeSalary}
             disabled={computing}
-            className="w-full bg-purple-600 text-white py-3 rounded-md hover:bg-purple-700 disabled:bg-gray-400 font-semibold text-base"
+            className="w-full bg-purple-600 text-white py-2 md:py-3 rounded-md hover:bg-purple-700 disabled:bg-gray-400 font-semibold text-sm md:text-base"
           >
             {computing ? "Computing..." : "Compute Salary"}
           </button>
@@ -635,15 +635,15 @@ const Reports: React.FC<{ alerts: Alert[]; submissions: TeacherSubmission[] }> =
   return (
     <div className="space-y-6">
       {/* Notifications */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-xl font-bold mb-4">Notifications</h2>
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+        <h2 className="text-lg md:text-xl font-bold mb-4">Notifications</h2>
         {alerts.length === 0 ? (
-          <p className="text-gray-600">No notifications</p>
+          <p className="text-gray-600 text-sm md:text-base">No notifications</p>
         ) : (
           <div className="space-y-2">
             {alerts.map((alert) => (
-              <div key={alert.id} className="p-3 bg-gray-50 rounded border-l-4 border-blue-500">
-                <p className="font-semibold text-sm">{alert.message}</p>
+              <div key={alert.id} className="p-2 md:p-3 bg-gray-50 rounded border-l-4 border-blue-500">
+                <p className="font-semibold text-xs md:text-sm">{alert.message}</p>
               </div>
             ))}
           </div>
@@ -651,48 +651,48 @@ const Reports: React.FC<{ alerts: Alert[]; submissions: TeacherSubmission[] }> =
       </div>
 
       {/* Salary Reports */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Salary Reports</h2>
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-3 md:gap-0">
+          <h2 className="text-lg md:text-xl font-bold">Salary Reports</h2>
           <button
             onClick={handleExport}
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            className="px-3 md:px-4 py-2 md:py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm md:text-base w-full md:w-auto"
           >
             📥 Export CSV
           </button>
         </div>
 
         {loading ? (
-          <p className="text-center text-gray-600">Loading...</p>
+          <p className="text-center text-gray-600 text-sm md:text-base">Loading...</p>
         ) : salaries.length === 0 ? (
-          <p className="text-center text-gray-600">No salary records found</p>
+          <p className="text-center text-gray-600 text-sm md:text-base">No salary records found</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-xs md:text-sm">
               <thead className="bg-gray-100">
                 <tr>
-                  <th className="px-4 py-2 text-left">Teacher</th>
-                  <th className="px-4 py-2 text-left">Period</th>
-                  <th className="px-4 py-2 text-left">Salary</th>
-                  <th className="px-4 py-2 text-left">Status</th>
-                  <th className="px-4 py-2 text-left">Actions</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Teacher</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Period</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Salary</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Status</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {salaries.map((salary) => (
                   <tr key={salary.id} className="border-t hover:bg-gray-50">
-                    <td className="px-4 py-2">{salary.teacher_name}</td>
-                    <td className="px-4 py-2">{salary.period_start} to {salary.period_end}</td>
-                    <td className="px-4 py-2">₱{salary.total_salary.toLocaleString()}</td>
-                    <td className="px-4 py-2">
+                    <td className="px-3 md:px-4 py-2">{salary.teacher_name}</td>
+                    <td className="px-3 md:px-4 py-2">{salary.period_start} to {salary.period_end}</td>
+                    <td className="px-3 md:px-4 py-2">₱{salary.total_salary.toLocaleString()}</td>
+                    <td className="px-3 md:px-4 py-2">
                       <span
                         className={`px-2 py-1 rounded text-xs font-semibold ${salary.status === "Finalized" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}`}
                       >
                         {salary.status}
                       </span>
                     </td>
-                    <td className="px-4 py-2">
-                      <div className="flex gap-2">
+                    <td className="px-3 md:px-4 py-2">
+                      <div className="flex gap-1 md:gap-2">
                         <button
                           onClick={async () => {
                             try {
@@ -715,7 +715,7 @@ const Reports: React.FC<{ alerts: Alert[]; submissions: TeacherSubmission[] }> =
                               alert('Error preparing payslip for print');
                             }
                           }}
-                          className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
+                          className="px-2 md:px-3 py-1 bg-green-600 text-white rounded text-xs md:text-sm hover:bg-green-700 whitespace-nowrap"
                         >
                           🖨️ Print
                         </button>
@@ -723,12 +723,12 @@ const Reports: React.FC<{ alerts: Alert[]; submissions: TeacherSubmission[] }> =
                         {salary.status !== 'Finalized' ? (
                           <button
                             onClick={() => setConfirmSendId(salary.id)}
-                            className="px-3 py-1 bg-indigo-600 text-white rounded text-sm hover:bg-indigo-700"
+                            className="px-2 md:px-3 py-1 bg-indigo-600 text-white rounded text-xs md:text-sm hover:bg-indigo-700 whitespace-nowrap"
                           >
-                            ✉️ Send Payslip
+                            ✉️ Send
                           </button>
                         ) : (
-                          <span className="text-sm text-gray-600">—</span>
+                          <span className="text-xs md:text-sm text-gray-600">—</span>
                         )}
                       </div>
                     </td>
@@ -742,9 +742,9 @@ const Reports: React.FC<{ alerts: Alert[]; submissions: TeacherSubmission[] }> =
 
       {confirmSendId && (
         <Modal title="Send Payslip" onClose={() => setConfirmSendId(null)}>
-          <p>Send payslip to teacher?</p>
+          <p className="text-sm md:text-base">Send payslip to teacher?</p>
           <div className="mt-4 flex justify-end gap-2">
-            <button onClick={() => setConfirmSendId(null)} className="px-4 py-2 bg-gray-200 rounded">Cancel</button>
+            <button onClick={() => setConfirmSendId(null)} className="px-3 md:px-4 py-2 bg-gray-200 rounded text-sm md:text-base">Cancel</button>
             <button 
               onClick={async () => {
                 if (!confirmSendId) return;
@@ -765,7 +765,7 @@ const Reports: React.FC<{ alerts: Alert[]; submissions: TeacherSubmission[] }> =
                 setConfirmSendId(null);
               }}
               disabled={sendingPayslipId !== null}
-              className="px-4 py-2 bg-indigo-600 text-white rounded disabled:bg-gray-400"
+              className="px-3 md:px-4 py-2 bg-indigo-600 text-white rounded disabled:bg-gray-400 text-sm md:text-base"
             >
               {sendingPayslipId === confirmSendId ? 'Sending...' : 'Send'}
             </button>
@@ -847,10 +847,10 @@ const ManageTeachers: React.FC<{ teachers: any[]; onRefresh: () => void }> = ({ 
     <div className="space-y-6">
       {/* Add Teacher Button */}
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl text-white font-bold">Manage Teachers</h2>
+        <h2 className="text-xl md:text-2xl text-white font-bold">Manage Teachers</h2>
         <button
           onClick={() => setShowAddForm(!showAddForm)}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          className="px-3 md:px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm md:text-base"
         >
           {showAddForm ? "✕ Cancel" : "➕ Add New Teacher"}
         </button>
@@ -858,66 +858,66 @@ const ManageTeachers: React.FC<{ teachers: any[]; onRefresh: () => void }> = ({ 
 
       {/* Add Teacher Form */}
       {showAddForm && (
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-bold mb-4">Add New Teacher</h3>
+        <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+          <h3 className="text-lg md:text-xl font-bold mb-4">Add New Teacher</h3>
           <form onSubmit={handleAddTeacher} className="space-y-4 w-full">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Email *</label>
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="teacher@school.com"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+              <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Full Name *</label>
               <input
                 type="text"
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="John Doe"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Department *</label>
+              <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Department *</label>
               <input
                 type="text"
                 required
                 value={formData.department}
                 onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                 placeholder="Mathematics"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Basic Pay *</label>
+              <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Basic Pay *</label>
               <input
                 type="number"
                 required
                 value={formData.basic_pay}
                 onChange={(e) => setFormData({ ...formData, basic_pay: e.target.value })}
                 placeholder="30000"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Initial Password *</label>
+              <label className="block text-xs md:text-sm font-medium text-gray-700 mb-1">Initial Password *</label>
               <input
                 type="password"
                 required
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 placeholder="e.g., Teacher@123"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base"
               />
               <p className="text-xs text-gray-500 mt-1">Teacher can change this after first login</p>
             </div>
@@ -925,7 +925,7 @@ const ManageTeachers: React.FC<{ teachers: any[]; onRefresh: () => void }> = ({ 
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:bg-gray-400"
+              className="w-full px-4 py-2 md:py-3 bg-green-600 text-white rounded hover:bg-green-700 disabled:bg-gray-400 text-sm md:text-base"
             >
               {loading ? "Adding..." : "Add Teacher"}
             </button>
@@ -934,42 +934,42 @@ const ManageTeachers: React.FC<{ teachers: any[]; onRefresh: () => void }> = ({ 
       )}
 
       {/* Teachers List */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h3 className="text-xl font-bold mb-4">All Teachers ({teachers.length})</h3>
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+        <h3 className="text-lg md:text-xl font-bold mb-4">All Teachers ({teachers.length})</h3>
 
         {teachers.length === 0 ? (
-          <p className="text-center text-gray-600">No teachers found. Add one to get started!</p>
+          <p className="text-center text-gray-600 text-sm md:text-base">No teachers found. Add one to get started!</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-xs md:text-sm">
               <thead className="bg-gray-100">
                 <tr>
-                  <th className="px-4 py-2 text-left">Name</th>
-                  <th className="px-4 py-2 text-left">Email</th>
-                  <th className="px-4 py-2 text-left">Department</th>
-                  <th className="px-4 py-2 text-left">Basic Pay</th>
-                  <th className="px-4 py-2 text-left">Actions</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Name</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Email</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Department</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Basic Pay</th>
+                  <th className="px-3 md:px-4 py-2 text-left">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {teachers.map((teacher) => (
                   <tr key={teacher.id} className="border-t hover:bg-gray-50">
-                    <td className="px-4 py-2 font-semibold">{teacher.name}</td>
-                    <td className="px-4 py-2">{teacher.email}</td>
-                    <td className="px-4 py-2">{teacher.department}</td>
-                    <td className="px-4 py-2">₱{parseFloat(teacher.basic_pay).toLocaleString()}</td>
-                    <td className="px-4 py-2">
-                      <div className="flex gap-2">
+                    <td className="px-3 md:px-4 py-2 font-semibold">{teacher.name}</td>
+                    <td className="px-3 md:px-4 py-2">{teacher.email}</td>
+                    <td className="px-3 md:px-4 py-2">{teacher.department}</td>
+                    <td className="px-3 md:px-4 py-2">₱{parseFloat(teacher.basic_pay).toLocaleString()}</td>
+                    <td className="px-3 md:px-4 py-2">
+                      <div className="flex gap-1 md:gap-2">
                         <button
                           onClick={() => setSelectedTeacherForProfile(teacher)}
-                          className="px-3 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600"
+                          className="px-2 md:px-3 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 whitespace-nowrap"
                         >
                           View Profile
                         </button>
                         <button
                           onClick={() => { setConfirmDeleteId(teacher.id); setConfirmDeleteName(teacher.name); }}
                           disabled={deleteLoading === teacher.id}
-                          className="px-3 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 disabled:bg-gray-400"
+                          className="px-2 md:px-3 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 disabled:bg-gray-400 whitespace-nowrap"
                         >
                           {deleteLoading === teacher.id ? "..." : "Delete"}
                         </button>
@@ -984,10 +984,10 @@ const ManageTeachers: React.FC<{ teachers: any[]; onRefresh: () => void }> = ({ 
 
         {confirmDeleteId && (
           <Modal title="Confirm Delete" onClose={() => { setConfirmDeleteId(null); setConfirmDeleteName(null); }}>
-            <p>Are you sure you want to delete <strong>{confirmDeleteName}</strong>?</p>
+            <p className="text-sm md:text-base">Are you sure you want to delete <strong>{confirmDeleteName}</strong>?</p>
             <div className="mt-4 flex justify-end gap-2">
-              <button onClick={() => { setConfirmDeleteId(null); setConfirmDeleteName(null); }} className="px-4 py-2 bg-gray-200 rounded">Cancel</button>
-              <button onClick={() => confirmDeleteId && handleDeleteTeacher(confirmDeleteId)} className="px-4 py-2 bg-red-600 text-white rounded">Delete</button>
+              <button onClick={() => { setConfirmDeleteId(null); setConfirmDeleteName(null); }} className="px-3 md:px-4 py-2 bg-gray-200 rounded text-sm md:text-base">Cancel</button>
+              <button onClick={() => confirmDeleteId && handleDeleteTeacher(confirmDeleteId)} className="px-3 md:px-4 py-2 bg-red-600 text-white rounded text-sm md:text-base">Delete</button>
             </div>
           </Modal>
         )}
@@ -1192,18 +1192,18 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Assignment Form */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold mb-6">📚 Assign Teaching Load</h2>
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+        <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">📚 Assign Teaching Load</h2>
 
-        <div className="grid grid-cols-1 gap-6 mb-4">
+        <div className="grid grid-cols-1 gap-4 md:gap-6 mb-4">
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Select Teacher</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Select Teacher</label>
             <select
               value={selectedTeacher || ""}
               onChange={(e) => setSelectedTeacher(e.target.value ? parseInt(e.target.value) : null)}
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Choose a teacher</option>
               {teachers.map((teacher) => (
@@ -1215,33 +1215,33 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Subject</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Subject</label>
             <input
               type="text"
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
               placeholder="e.g., Mathematics"
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Class/Section</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Class/Section</label>
             <input
               type="text"
               value={formData.class_section}
               onChange={(e) => setFormData({ ...formData, class_section: e.target.value })}
               placeholder="e.g., 10-A"
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Day</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Day</label>
             <select
               value={formData.day}
               onChange={(e) => setFormData({ ...formData, day: e.target.value })}
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select day</option>
               <option value="Monday">Monday</option>
@@ -1255,22 +1255,22 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">Start Time</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Start Time</label>
             <input
               type="time"
               value={formData.start_time}
               onChange={(e) => setFormData({ ...formData, start_time: e.target.value })}
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-2">End Time</label>
+            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">End Time</label>
             <input
               type="time"
               value={formData.end_time}
               onChange={(e) => setFormData({ ...formData, end_time: e.target.value })}
-              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -1278,14 +1278,14 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
         <button
           onClick={handleAssignTeachingLoad}
           disabled={submitting}
-          className="w-full px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 font-semibold transition text-base"
+          className="w-full px-4 py-2 md:py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 font-semibold transition text-sm md:text-base"
         >
           {submitting ? "Assigning..." : "Assign Teaching Load"}
         </button>
 
         {message && (
           <div
-            className={`mt-4 p-4 rounded-lg ${
+            className={`mt-4 p-3 md:p-4 rounded-lg text-sm md:text-base ${
               message.type === "success"
                 ? "bg-green-100 text-green-800 border border-green-300"
                 : "bg-red-100 text-red-800 border border-red-300"
@@ -1297,26 +1297,26 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
       </div>
 
       {/* Teaching Loads Table */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h3 className="text-xl font-bold mb-4">
+      <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+        <h3 className="text-lg md:text-xl font-bold mb-4">
           {selectedTeacher ? `${selectedTeacherName}'s Teaching Load` : "All Teaching Loads"}
         </h3>
 
         {loading ? (
-          <p className="text-center text-gray-600">Loading...</p>
+          <p className="text-center text-gray-600 text-sm md:text-base">Loading...</p>
         ) : (teachingLoads.length === 0 || teacherLoads.length === 0) && selectedTeacher ? (
-          <p className="text-center text-gray-600">No teaching loads assigned to this teacher</p>
+          <p className="text-center text-gray-600 text-sm md:text-base">No teaching loads assigned to this teacher</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full text-xs md:text-sm">
               <thead className="bg-gray-100 border-b-2 border-gray-300">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold">Teacher</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold">Subject</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold">Class/Section</th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold">Hours/Session</th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold">Status</th>
-                  <th className="px-6 py-3 text-center text-sm font-semibold">Action</th>
+                  <th className="px-3 md:px-6 py-2 md:py-3 text-left font-semibold">Teacher</th>
+                  <th className="px-3 md:px-6 py-2 md:py-3 text-left font-semibold">Subject</th>
+                  <th className="px-3 md:px-6 py-2 md:py-3 text-left font-semibold">Class/Section</th>
+                  <th className="px-3 md:px-6 py-2 md:py-3 text-left font-semibold">Hours/Session</th>
+                  <th className="px-3 md:px-6 py-2 md:py-3 text-center font-semibold">Status</th>
+                  <th className="px-3 md:px-6 py-2 md:py-3 text-center font-semibold">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -1325,13 +1325,13 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
                   const isCompleted = hours >= 1.67; // Consider completed if >= 1.67 hours
                   return (
                     <tr key={index} className={`border-b hover:bg-blue-50 transition ${isCompleted ? 'opacity-60 bg-gray-50' : ''}`}>
-                      <td className="px-6 py-3">
+                      <td className="px-3 md:px-6 py-2 md:py-3">
                         {teachers.find((t) => t.id === load.teacher_id)?.name || "Unknown"}
                       </td>
-                      <td className="px-6 py-3">{load.subject}</td>
-                      <td className="px-6 py-3">{load.class_section}</td>
-                      <td className="px-6 py-3">
-                        <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                      <td className="px-3 md:px-6 py-2 md:py-3">{load.subject}</td>
+                      <td className="px-3 md:px-6 py-2 md:py-3">{load.class_section}</td>
+                      <td className="px-3 md:px-6 py-2 md:py-3">
+                        <span className={`px-2 md:px-3 py-1 rounded-full text-xs font-semibold ${
                           isCompleted 
                             ? 'bg-green-100 text-green-800' 
                             : 'bg-blue-100 text-blue-800'
@@ -1339,8 +1339,8 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
                           {hours} hrs {isCompleted && '✓'}
                         </span>
                       </td>
-                      <td className="px-6 py-3 text-center">
-                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                      <td className="px-3 md:px-6 py-2 md:py-3 text-center">
+                        <span className={`px-2 md:px-3 py-1 rounded-full text-xs font-semibold ${
                           isCompleted
                             ? 'bg-green-100 text-green-800'
                             : 'bg-yellow-100 text-yellow-800'
@@ -1348,30 +1348,30 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
                           {isCompleted ? 'Completed ✓' : 'Active'}
                         </span>
                       </td>
-                      <td className="px-6 py-3 text-center">
+                      <td className="px-3 md:px-6 py-2 md:py-3 text-center">
                         {load.completion_status === 'pending' ? (
-                          <div className="flex gap-2 justify-center">
+                          <div className="flex gap-1 md:gap-2 justify-center">
                             <button
                               onClick={() => handleApproveTeachingLoad(load.id)}
-                              className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-xs font-semibold transition"
+                              className="px-2 md:px-3 py-1 md:py-2 bg-green-500 text-white rounded hover:bg-green-600 text-xs font-semibold transition"
                             >
                               Approve
                             </button>
                             <button
                               onClick={() => handleDisapproveTeachingLoad(load.id)}
-                              className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-xs font-semibold transition"
+                              className="px-2 md:px-3 py-1 md:py-2 bg-red-500 text-white rounded hover:bg-red-600 text-xs font-semibold transition"
                             >
                               Disapprove
                             </button>
                           </div>
                         ) : load.completion_status === 'approved' ? (
-                          <span className="px-3 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">
+                          <span className="px-2 md:px-3 py-1 md:py-2 bg-green-100 text-green-800 rounded text-xs font-semibold">
                             ✓ Approved
                           </span>
                         ) : load.completion_status === 'disapproved' ? (
                           <button
                             onClick={() => handleDeleteTeachingLoad(load.id)}
-                            className="px-3 py-1 bg-gray-400 text-white rounded hover:bg-gray-500 text-xs font-semibold transition"
+                            className="px-2 md:px-3 py-1 md:py-2 bg-gray-400 text-white rounded hover:bg-gray-500 text-xs font-semibold transition"
                           >
                             Remove
                           </button>
