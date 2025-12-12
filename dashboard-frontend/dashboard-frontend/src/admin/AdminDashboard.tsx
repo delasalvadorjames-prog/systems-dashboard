@@ -76,7 +76,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ activeTab = "dashboard"
     <div 
       className="min-h-screen relative overflow-hidden"
       style={{
-        backgroundImage: 'url(/bg.png)',
+        backgroundImage: `url(${require('../images/bg.png')})`,
         backgroundSize: '110%',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',

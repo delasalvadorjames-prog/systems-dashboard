@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/Payroll-system/static/css/main.f7d4b685.css",
-    "main.js": "/Payroll-system/static/js/main.640695a9.js",
-    "index.html": "/Payroll-system/index.html",
-    "main.f7d4b685.css.map": "/Payroll-system/static/css/main.f7d4b685.css.map",
-    "main.640695a9.js.map": "/Payroll-system/static/js/main.640695a9.js.map"
+    "main.css": "/jeremias-dash/static/css/main.5587efff.css",
+    "main.js": "/jeremias-dash/static/js/main.90b3bde3.js",
+    "static/media/bg.png": "/jeremias-dash/static/media/bg.92c2a9c6295eae3b7085.png",
+    "index.html": "/jeremias-dash/index.html",
+    "main.5587efff.css.map": "/jeremias-dash/static/css/main.5587efff.css.map",
+    "main.90b3bde3.js.map": "/jeremias-dash/static/js/main.90b3bde3.js.map"
   },
   "entrypoints": [
-    "static/css/main.f7d4b685.css",
-    "static/js/main.640695a9.js"
+    "static/css/main.5587efff.css",
+    "static/js/main.90b3bde3.js"
   ]
 }

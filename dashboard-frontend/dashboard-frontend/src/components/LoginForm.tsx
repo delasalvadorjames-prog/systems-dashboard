@@ -65,7 +65,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ title, role, onLogin, onBack, dem
     <div
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{
-        backgroundImage: 'url(/bg.png)',
+        backgroundImage: `url(${require('../images/bg.png')})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
