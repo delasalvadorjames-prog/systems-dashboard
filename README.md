@@ -315,3 +315,4 @@ CREATE TABLE notifications (
 - Notification system for alerts and updates
 # jeremias-dash
 # dashboard-rep
+# systems-dashboard
