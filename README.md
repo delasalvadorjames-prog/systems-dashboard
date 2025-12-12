@@ -188,18 +188,27 @@ CREATE TABLE notifications (
 
 ## Setup Instructions
 
+### Prerequisites
+
+- Node.js (v14+)
+- MySQL Server
+- npm or yarn
+
 ### Backend Setup
 
-1. **Install Dependencies**
-
+1. **Navigate to backend directory**
    ```bash
    cd backend
+   ```
+
+2. **Install Dependencies**
+   ```bash
    npm install
    ```
 
-2. **Configure Database**
-
-   - Create a `.env` file with:
+3. **Configure Database**
+   - Create a MySQL database named `payrolldb`
+   - Create a `.env` file in the backend folder:
 
    ```
    DB_HOST=localhost
@@ -207,26 +216,53 @@ CREATE TABLE notifications (
    DB_PASS=your_password
    DB_NAME=payrolldb
    PORT=5000
+   NODE_ENV=development
+   JWT_SECRET=your_jwt_secret
+   EMAIL_USER=your_email@gmail.com
+   EMAIL_PASS=your_app_password
    ```
 
-3. **Start Server**
+4. **Initialize Database Schema**
+   ```bash
+   npm run migrate
+   ```
+
+5. **Start Backend Server**
    ```bash
    npm start
    ```
+   - Server will run at `http://localhost:5000`
 
 ### Frontend Setup
 
-1. **Install Dependencies**
-
+1. **Navigate to frontend directory**
    ```bash
    cd dashboard-frontend/dashboard-frontend
-   npm install axios
    ```
 
-2. **Start Development Server**
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start Development Server**
    ```bash
    npm start
    ```
+   - Frontend will open at `http://localhost:3000`
+
+### Production Build
+
+1. **Build Frontend**
+   ```bash
+   cd dashboard-frontend/dashboard-frontend
+   npm run build
+   ```
+
+2. **Deploy Backend**
+   - Set `NODE_ENV=production`
+   - Deploy to hosting service (Heroku, AWS, DigitalOcean, etc.)
+   - Ensure MySQL database is accessible
 
 ## Demo Credentials
 
