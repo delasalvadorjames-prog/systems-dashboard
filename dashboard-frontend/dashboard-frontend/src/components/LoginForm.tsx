@@ -75,7 +75,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ title, role, onLogin, onBack, dem
 
       <div className="relative z-10 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-8 w-96 border border-white/20 animate-fadeIn">
         <h1 className={`text-3xl font-bold text-center bg-gradient-to-r ${
-          role === 'admin' ? 'from-purple-600 to-purple-700' : 'from-blue-600 to-blue-700'
+          role === 'admin' ? 'from-sky-600 to-sky-700' : 'from-blue-600 to-blue-700'
         } bg-clip-text text-transparent mb-8`}>
           {title}
         </h1>
@@ -120,7 +120,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ title, role, onLogin, onBack, dem
             disabled={loading}
             className={`w-full text-white py-2 rounded-lg font-semibold transition duration-200 disabled:bg-gray-400 ${
               role === 'admin'
-                ? 'bg-purple-600 hover:bg-purple-700'
+                ? 'bg-sky-600 hover:bg-sky-700'
                 : 'bg-blue-600 hover:bg-blue-700'
             }`}
           >

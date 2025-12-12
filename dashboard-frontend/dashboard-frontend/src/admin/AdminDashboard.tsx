@@ -495,20 +495,20 @@ const ComputeSalary: React.FC = () => {
   };
 
   return (
-    <div className="bg-white/30 text-center rounded-lg shadow-md p-6">
+    <div className="bg-white/30 text-center rounded-lg shadow-md p-6 min-h-screen flex flex-col">
       <h2 className="text-2xl text-white font-bold mb-4">Compute Salary</h2>
 
       {loading ? (
         <p className="text-center text-gray-600">Loading teachers...</p>
       ) : (
-        <div className="flex justify-center">
-          <div className="space-y-4 max-w-md w-full">
+        <div className="flex justify-center flex-1">
+          <div className="space-y-4 max-w-md w-full flex flex-col justify-center">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Teacher</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Teacher</label>
             <select
               value={selectedTeacher}
               onChange={(e) => setSelectedTeacher(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select Teacher</option>
               {teachers.map((teacher) => (
@@ -520,69 +520,69 @@ const ComputeSalary: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Period Start</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Period Start</label>
             <input
               type="date"
               value={salaryData.period_start}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, period_start: e.target.value })
               }
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Period End</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Period End</label>
             <input
               type="date"
               value={salaryData.period_end}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, period_end: e.target.value })
               }
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Hourly Rate</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Hourly Rate</label>
             <input
               type="number"
               value={salaryData.hourly_rate}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, hourly_rate: parseFloat(e.target.value) })
               }
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Allowances</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Allowances</label>
             <input
               type="number"
               value={salaryData.allowances}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, allowances: parseFloat(e.target.value) })
               }
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Deductions</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Deductions</label>
             <input
               type="number"
               value={salaryData.deductions}
               onChange={(e) =>
                 setSalaryData({ ...salaryData, deductions: parseFloat(e.target.value) })
               }
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <button
             onClick={handleComputeSalary}
             disabled={computing}
-            className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 disabled:bg-gray-400"
+            className="w-full bg-purple-600 text-white py-3 rounded-md hover:bg-purple-700 disabled:bg-gray-400 font-semibold text-base"
           >
             {computing ? "Computing..." : "Compute Salary"}
           </button>
@@ -1197,13 +1197,13 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold mb-6">📚 Assign Teaching Load</h2>
 
-        <div className="grid grid-cols-1 gap-4 mb-4">
+        <div className="grid grid-cols-1 gap-6 mb-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Select Teacher</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Select Teacher</label>
             <select
               value={selectedTeacher || ""}
               onChange={(e) => setSelectedTeacher(e.target.value ? parseInt(e.target.value) : null)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Choose a teacher</option>
               {teachers.map((teacher) => (
@@ -1215,33 +1215,33 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Subject</label>
             <input
               type="text"
               value={formData.subject}
               onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
               placeholder="e.g., Mathematics"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Class/Section</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Class/Section</label>
             <input
               type="text"
               value={formData.class_section}
               onChange={(e) => setFormData({ ...formData, class_section: e.target.value })}
               placeholder="e.g., 10-A"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Day</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Day</label>
             <select
               value={formData.day}
               onChange={(e) => setFormData({ ...formData, day: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="">Select day</option>
               <option value="Monday">Monday</option>
@@ -1255,22 +1255,22 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Start Time</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">Start Time</label>
             <input
               type="time"
               value={formData.start_time}
               onChange={(e) => setFormData({ ...formData, start_time: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">End Time</label>
+            <label className="block text-base font-medium text-gray-700 mb-2">End Time</label>
             <input
               type="time"
               value={formData.end_time}
               onChange={(e) => setFormData({ ...formData, end_time: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -1278,7 +1278,7 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
         <button
           onClick={handleAssignTeachingLoad}
           disabled={submitting}
-          className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 font-semibold transition"
+          className="w-full px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 font-semibold transition text-base"
         >
           {submitting ? "Assigning..." : "Assign Teaching Load"}
         </button>
