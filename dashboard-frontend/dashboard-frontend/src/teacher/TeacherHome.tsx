@@ -63,14 +63,8 @@ const TeacherHome: React.FC<TeacherHomeProps> = ({ teacher: initialTeacher, acti
 
       {/* Header with Logo */}
       <div className="relative z-20 mx-6 mt-8 mb-4">
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-6 py-4 shadow-lg flex items-center gap-4" style={{ animation: 'slideInDown 0.6s ease-out' }}>
-          <img 
-            src="/logo.png" 
-            alt="Payroll Logo" 
-            className="w-14 h-14 object-contain drop-shadow-lg hover:scale-110 transition-transform duration-300"
-            style={{ animation: 'float 3s ease-in-out infinite' }}
-          />
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent" style={{ animation: 'slideInRight 0.6s ease-out 0.2s backwards' }}>
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-6 py-4 shadow-lg flex items-center justify-center" style={{ animation: 'slideInDown 0.6s ease-out' }}>
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-blue-400 bg-clip-text text-transparent" style={{ animation: 'slideInRight 0.6s ease-out 0.2s backwards' }}>
             Payroll System
           </h1>
         </div>
