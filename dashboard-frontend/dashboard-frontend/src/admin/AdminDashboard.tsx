@@ -1167,6 +1167,30 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
     }
   };
 
+  const handleApproveTeachingLoad = async (loadId: number) => {
+    try {
+      const response = await axios.patch(`http://localhost:4000/api/teaching-load/${loadId}/approve`, {});
+      if (response.data.success) {
+        setMessage({ type: "success", text: "Teaching load approved! Hours recorded in payslip." });
+        fetchTeachingLoads();
+      }
+    } catch (error: any) {
+      setMessage({ type: "error", text: error.response?.data?.message || "Error approving teaching load" });
+    }
+  };
+
+  const handleDisapproveTeachingLoad = async (loadId: number) => {
+    try {
+      const response = await axios.patch(`http://localhost:4000/api/teaching-load/${loadId}/disapprove`, {});
+      if (response.data.success) {
+        setMessage({ type: "success", text: "Teaching load disapproved. Teacher can resubmit." });
+        fetchTeachingLoads();
+      }
+    } catch (error: any) {
+      setMessage({ type: "error", text: error.response?.data?.message || "Error disapproving teaching load" });
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Assignment Form */}
@@ -1325,7 +1349,33 @@ const ManageTeachingLoad: React.FC<{ teachers: any[] }> = ({ teachers }) => {
                         </span>
                       </td>
                       <td className="px-6 py-3 text-center">
-                        {isCompleted ? (
+                        {load.completion_status === 'pending' ? (
+                          <div className="flex gap-2 justify-center">
+                            <button
+                              onClick={() => handleApproveTeachingLoad(load.id)}
+                              className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-xs font-semibold transition"
+                            >
+                              Approve
+                            </button>
+                            <button
+                              onClick={() => handleDisapproveTeachingLoad(load.id)}
+                              className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-xs font-semibold transition"
+                            >
+                              Disapprove
+                            </button>
+                          </div>
+                        ) : load.completion_status === 'approved' ? (
+                          <span className="px-3 py-1 bg-green-100 text-green-800 rounded text-xs font-semibold">
+                            ✓ Approved
+                          </span>
+                        ) : load.completion_status === 'disapproved' ? (
+                          <button
+                            onClick={() => handleDeleteTeachingLoad(load.id)}
+                            className="px-3 py-1 bg-gray-400 text-white rounded hover:bg-gray-500 text-xs font-semibold transition"
+                          >
+                            Remove
+                          </button>
+                        ) : isCompleted ? (
                           <button
                             onClick={() => handleDeleteTeachingLoad(load.id)}
                             className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-xs font-semibold transition"

@@ -215,6 +215,7 @@ const TeachingLoadView: React.FC<{ teacherId?: number }> = ({ teacherId }) => {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalHours, setTotalHours] = useState(0);
+  const [marking, setMarking] = useState<number | null>(null);
 
   useEffect(() => {
     if (teacherId) {
@@ -251,10 +252,25 @@ const TeachingLoadView: React.FC<{ teacherId?: number }> = ({ teacherId }) => {
     setLoading(false);
   };
 
+  const handleMarkAsDone = async (loadId: number) => {
+    setMarking(loadId);
+    try {
+      const response = await axios.patch(`http://localhost:4000/api/teaching-load/${loadId}/mark-done`, {});
+      if (response.data.success) {
+        fetchData();
+        alert("Marked as done! Waiting for admin approval.");
+      }
+    } catch (error) {
+      console.error("Error marking as done:", error);
+      alert("Error marking as done");
+    }
+    setMarking(null);
+  };
+
   return (
     <div className="space-y-6">
       {/* Summary Card */}
-      <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-md p-6 text-white">
+      <div className="bg-gradient-to-r from-white/30 to-white/30 rounded-lg shadow-md p-6 text-white">
         <h2 className="text-3xl font-bold mb-2">📚 Teaching Load</h2>
         <p className="text-xl">Total Hours/Week: <span className="font-bold">{totalHours.toFixed(1)} hours</span></p>
       </div>
@@ -277,6 +293,7 @@ const TeachingLoadView: React.FC<{ teacherId?: number }> = ({ teacherId }) => {
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Class/Section</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Hours/Session</th>
                   <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -305,6 +322,15 @@ const TeachingLoadView: React.FC<{ teacherId?: number }> = ({ teacherId }) => {
                       <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">
                         ✓ Active
                       </span>
+                    </td>
+                    <td className="px-6 py-3">
+                      <button
+                        onClick={() => handleMarkAsDone(item.id)}
+                        disabled={marking === item.id || item.completion_status === 'pending' || item.completion_status === 'approved'}
+                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400 text-sm font-semibold"
+                      >
+                        {marking === item.id ? "Processing..." : item.completion_status === 'approved' ? "✓ Approved" : item.completion_status === 'pending' ? "⏳ Pending" : "Mark Done"}
+                      </button>
                     </td>
                   </tr>
                 ))}
